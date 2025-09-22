@@ -25,6 +25,29 @@
       </ul>
     </nav>
 
+    <div class="pickReg">
+
+      <div class="txtguy">
+        <p class="regst" id="pickedSt">Select State...</p>
+        <p class="regper" id="pickreg">Input Registrar...</p>
+      </div>
+
+      <div class="inputguy">
+        <select id="regstate">
+          <option value="" disabled selected>Select State ...</option>
+          <option value="Imo">Imo</option>
+          <option value="Abia">Abia</option>
+          <option value="Rivers">Rivers</option>
+          <option value="Bayelsa">Bayelsa</option>
+          <option value="Akwa Ibom">Akwa Ibom</option>
+          <option value="Cross River">Cross River</option>
+        </select>
+        <input type="text" id="regper" placeholder="Input Registrar">
+      </div>
+
+    </div>
+
+  
     <form id="registrationForm">
 <!--       <h2 class="headboy">Music & Drama Concert</h2> -->
       <div class="heady">
@@ -57,10 +80,20 @@
         <input type="text" name="othernames" id="othernames" placeholder="your answer">
       </div>
 
-      <div class="inputer">
-        <label for="state">State of Residence<span class="required">*</span></label>
-        <input type="text" name="state" id="state" placeholder="your answer" required>
-      </div>
+    <div class="inputer">
+      <label for="state">State of Residence <span class="required">*</span></label>
+      <select name="state" id="state" required>
+        <option value="" disabled selected>Select your state</option>
+        <option value="Imo">Imo</option>
+        <option value="Abia">Abia</option>
+        <option value="Rivers">Rivers</option>
+        <option value="Bayelsa">Bayelsa</option>
+        <option value="Akwa Ibom">Akwa Ibom</option>
+        <option value="Cross River">Cross River</option>
+      </select>
+    </div>
+
+
 
       <div class="inputer">
         <label for="lga">LGA of Residence<span class="required">*</span></label>
@@ -84,8 +117,13 @@
 
       <div class="inputer">
         <label for="marital">Marital Status <span class="required">*</span></label>
-        <input type="text" name="marital" id="marital" placeholder="your answer" required>
+        <select name="marital" id="marital" required>
+          <option value="" disabled selected>Select your status</option>
+          <option value="Single">Single</option>
+          <option value="Married">Married</option>
+        </select>
       </div>
+
 
       <div class="inputer">
         <label for="church">Church/Ministry <span class="required">*</span></label>
@@ -93,19 +131,36 @@
       </div>
 
       <div class="inputer">
-        <label for="discipleship">Discipleship Relationship? <span class="required">*</span></label>
-         <input type="text" name="discipleship" id="discipleship" placeholder="your answer" required>
+        <label for="discipleship">Are You in a Discipleship Relationship? <span class="required">*</span></label>
+        <select name="discipleship" id="discipleship" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
+
 
       <div class="inputer">
         <label for="center">Discipleship Center</label>
         <input type="text" name="center" id="center" placeholder="your answer">
       </div>
 
+      
       <div class="inputer">
         <label for="how">How did you get to know about the Program? <span class="required">*</span></label>
-        <input type="text" name="how" id="how" placeholder="your answer" required>
+        <select name="how" id="how" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="Church">Church</option>
+          <option value="Discipleship class">Discipleship class</option>
+          <option value="Friend /Neighbor Invite">Friend / Neighbor Invite</option>
+          <option value="Handbills">Handbills</option>
+          <option value="Social Media">Social Media</option>
+          <option value="Radio Jingle">Radio Jingle</option>
+          <option value="SMS">SMS</option>
+          <option value="Any other">Any other</option>
+        </select>
       </div>
+
 
 
       <div class="form-actions">
@@ -116,5 +171,7 @@
   </div>
 
   <script src="index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

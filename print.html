@@ -234,8 +234,77 @@
   }
 }
 
+.pickReg{
+  display: flex;
+  justify-content: space-between;
+}
 
+.txtguy{
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+}
 
+.inputguy {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Shared styles */
+.inputguy select,
+.inputguy input {
+  height: 28px;
+  line-height: 1;
+  padding: 0 8px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #1b5e20;              /* normal text = green */
+  border: 1px solid #cde9cd;   /* initial border */
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* Input placeholder */
+.inputguy input::placeholder {
+  font-size: 0.85rem;
+  color: black;
+}
+
+/* Style first option as black "placeholder" */
+.inputguy select option[value=""] {
+  color: black;
+}
+
+/* Hover */
+.inputguy select:hover,
+.inputguy input:hover {
+  border-color: #4caf50;
+  box-shadow: 0 0 4px #cde9cd;
+}
+
+/* Focus */
+.inputguy select:focus,
+.inputguy input:focus {
+  border-color: #388e3c;
+  box-shadow: 0 0 6px #4caf50;
+  outline: none;
+}
+
+/* Custom arrow */
+.inputguy select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #1b5e20 50%),
+                    linear-gradient(135deg, #1b5e20 50%, transparent 50%);
+  background-position: right 8px top 50%, right 4px top 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 20px;
+}
+
+#oth {
+  display: none;
+}
 
 
 
@@ -252,6 +321,10 @@
       </div>
     </div>
 
+
+
+
+
     <nav class="navbar">
       <ul>
         <li><a href="index.html" >Register</a></li>
@@ -259,73 +332,93 @@
       </ul>
     </nav>
 
-  <div class="controls">
-    <div class="central-control">
-      <div>
-        <label>Auto Print</label>
-        <button class="act-btn" id="auto_print">Auto Stack</button>
+    <div class="pickReg">
+
+      <div class="txtguy">
+        <p class="regst" id="pickedSt">Select State...</p>
+        <p class="regper" id="pickreg">Input Registrar...</p>
       </div>
 
-      <div>
-        <label>Manual pick Print</label>
-        <div class="func">
-          <input type="text" id="serial_input" placeholder="Input serial no">
-          <input type="text" id="tag_input" placeholder="Input tag position">
-          <button class="act-btn" id="manual_print">stack</button>
-          <button class="act-btn" id="last_print">print last</button>
+      <div class="inputguy">
+        <select id="regstate">
+          <option value="" disabled selected>Select State ...</option>
+          <option value="Imo">Imo</option>
+          <option value="Abia">Abia</option>
+          <option value="Rivers">Rivers</option>
+          <option value="Bayelsa">Bayelsa</option>
+          <option value="Akwaibom">Akwa Ibom</option>
+          <option value="Cross River">Cross River</option>
+        </select>
+        <input type="text" id="regper" placeholder="Input Registrar">
+      </div>
+      
+    </div>
+
+    <div id="oth">
+      <div class="controls">
+        <div class="central-control">
+          <div>
+            <label>Print Section</label>
+            <div class="inc">
+              <input type="text" id="serial_input" placeholder="Input code">
+              <input type="text" id="tag_input" placeholder="Input tag position">
+            </div>
+            <div class="func">
+              <button class="act-btn" id="auto_print">Auto Stack</button>
+              <button class="act-btn" id="last_print">print last</button>
+              <button class="act-btn" id="manual_print">stack</button>
+            </div>
+          </div>
+
+            <div>
+              <label>Participant</label>
+              <div class="inc">
+                <input type="text" id="check_serial_input" placeholder="Input code">
+                <input type="text" id="surname" placeholder="Input Surname">
+                <input type="text" id="firstname" placeholder="Input First Name">
+              </div>
+              <div class="func">
+                <button class="act-btn" id="manual_check">check</button>
+                <button class="act-btn" id="search">search</button>
+              </div>
+            </div>
         </div>
       </div>
 
-        <div>
-          <label>Print check</label>
-          <div class="func">
-            <input type="text" id="check_serial_input" placeholder="Input serial no">
-            <button class="act-btn" id="manual_check">check</button>
+      <div class="form-area" id="formArea">
+        <!-- dynamic content inserted by JS -->
+        <div style="color:#6b7280">Output Display</div>
+      </div>
+
+      <div  style="display:flex;gap:12px;align-items:center" class="otherctrl">
+        <button id="printBtn" style="display:none">Print</button>
+        <div id="stackChips" style="margin-left:8px"></div>
+      </div>
+
+      <div class="preview-wrap">
+        <div class="preview-panel">
+          <div class="a4" id="a4Preview" aria-label="A4 preview">
+            <div class="grid" id="grid">
+              <!-- six slots -->
+              <div class="slot" data-pos="1"></div>
+              <div class="slot" data-pos="2"></div>
+              <div class="slot" data-pos="3"></div>
+              <div class="slot" data-pos="4"></div>
+              <div class="slot" data-pos="5"></div>
+              <div class="slot" data-pos="6"></div>
+            </div>
           </div>
         </div>
 
-        <div>
-          <label>Get Serial No</label>
-          <div class="func">
-              <input type="text" id="surname" placeholder="Input Surname">
-              <input type="text" id="firstname" placeholder="Input First Name">
-              <button class="act-btn" id="search">search</button>
-          </div>
-        </div>
-    </div>
-
-  </div>
-
-  <div class="form-area" id="formArea">
-    <!-- dynamic content inserted by JS -->
-    <div style="color:#6b7280">Active Rows</div>
-  </div>
-
-  <div  style="display:flex;gap:12px;align-items:center" class="otherctrl">
-    <button id="printBtn" style="display:none">Print</button>
-    <div id="stackChips" style="margin-left:8px"></div>
-  </div>
-
-  <div class="preview-wrap">
-    <div class="preview-panel">
-      <div class="a4" id="a4Preview" aria-label="A4 preview">
-        <div class="grid" id="grid">
-          <!-- six slots -->
-          <div class="slot" data-pos="1"></div>
-          <div class="slot" data-pos="2"></div>
-          <div class="slot" data-pos="3"></div>
-          <div class="slot" data-pos="4"></div>
-          <div class="slot" data-pos="5"></div>
-          <div class="slot" data-pos="6"></div>
+        <div style="width:340px" class="stacker">
+          <h3>Stacked tags</h3>
+          <div id="stackList"></div>
         </div>
       </div>
+
+
     </div>
 
-    <div style="width:340px" class="stacker">
-      <h3>Stacked tags</h3>
-      <div id="stackList"></div>
-    </div>
-  </div>
 
   <script>
     const formArea = document.getElementById('formArea');
@@ -341,6 +434,50 @@
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbzT-Iu2fUvfxwUMS2r4bUOmDFlwP6fpA8xGPFwgSOfbmB2ygMpEj0cWA3OBZNXB-_uo_A/exec';
 
     const state = { currentData: null, slots: Array(6).fill(null)};
+    const regState = document.getElementById("regstate");
+    const regPer = document.getElementById("regper");
+    const pickedSt = document.getElementById("pickedSt");
+    const pickReg = document.getElementById("pickreg");
+    const registrationForm = document.getElementById("oth");
+
+
+    function showFormIfReady() {
+      if (regState.value && regPer.value.trim() !== "") {
+        registrationForm.style.display = "block";
+      }
+    }
+
+    // ---- Helper function to update UI ----
+    function updatePickedState(value) {
+      if (value) {
+        pickedSt.innerHTML = `<span style="color:#1b5e20; font-weight:bold;">State:</span> <span style="color:black; font-weight:600;">${value}</span>`;
+      } else {
+        pickedSt.innerHTML = `<span style="color:#1b5e20;">State:</span> <span style="color:gray; font-style:italic;">(not selected)</span>`;
+      }
+    }
+
+    function updateRegistrar(value) {
+      if (value.trim() !== "") {
+        pickReg.innerHTML = `<span style="color:#1b5e20; font-weight:bold;">Registrar:</span> <span style="color:black; font-weight:600;">${value}</span>`;
+      } else {
+        pickReg.innerHTML = `<span style="color:#1b5e20;">Registrar:</span> <span style="color:gray; font-style:italic;">(not provided)</span>`;
+      }
+    }
+
+    // ---- Event listeners ----
+    regState.addEventListener("change", () => {
+      const val = regState.value;
+      updatePickedState(val);
+      localStorage.setItem("selectedState", val);
+      showFormIfReady()
+    });
+
+    regPer.addEventListener("input", () => {
+      const val = regPer.value;
+      updateRegistrar(val);
+      localStorage.setItem("registrarName", val);
+      showFormIfReady()
+    });
 
 
 function buildTagDOM(info) {
@@ -502,7 +639,7 @@ function renderStackList() {
           "https://script.google.com/macros/s/AKfycbzT-Iu2fUvfxwUMS2r4bUOmDFlwP6fpA8xGPFwgSOfbmB2ygMpEj0cWA3OBZNXB-_uo_A/exec",
           {
             method: "POST",
-            body: JSON.stringify({ action: "autoGet" }),
+            body: JSON.stringify({ action: "autoGet", stato: localStorage.getItem("selectedState") }),
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
@@ -512,8 +649,6 @@ function renderStackList() {
         const result = await response.json();
 
         if (result.status === "success" && Array.isArray(result.data)) {
-          console.log("Participants received:", result.data);
-          console.log("lastdone:", result.lastDoneRow);
 
           // ✅ Clear all slots before adding new data
           state.slots = new Array(state.slots.length).fill(null);
@@ -561,7 +696,7 @@ function renderStackList() {
           "https://script.google.com/macros/s/AKfycbzT-Iu2fUvfxwUMS2r4bUOmDFlwP6fpA8xGPFwgSOfbmB2ygMpEj0cWA3OBZNXB-_uo_A/exec",
           {
             method: "POST",
-            body: JSON.stringify({ action: "manualGet", serial: serialNo }),
+            body: JSON.stringify({ action: "manualGet", serial: serialNo, stato: localStorage.getItem("selectedState") }),
             headers: { "Content-Type": "application/x-www-form-urlencoded" }, // ✅ proper JSON
           }
         );
@@ -623,7 +758,7 @@ function renderStackList() {
           "https://script.google.com/macros/s/AKfycbzT-Iu2fUvfxwUMS2r4bUOmDFlwP6fpA8xGPFwgSOfbmB2ygMpEj0cWA3OBZNXB-_uo_A/exec",
           {
             method: "POST",
-            body: JSON.stringify({ action: "manualGet", serial: 'last' }),
+            body: JSON.stringify({ action: "manualGet", serial: 'last', stato: localStorage.getItem("selectedState")}),
             headers: { "Content-Type": "application/x-www-form-urlencoded" }, // ✅ proper JSON
           }
         );
@@ -676,57 +811,122 @@ function renderStackList() {
 
 
     manualCheck.addEventListener('click', async () => {
-    const serialNo = document.getElementById('check_serial_input').value.trim();
+    const sn = document.getElementById('check_serial_input');
+    const su = document.getElementById('surname');
+    const fn = document.getElementById('firstname');
+    serialNo = sn.value.trim();
+    surname = su.value.trim();
+    firstname = fn.value.trim();
+    // Count how many fields are filled
+    let filledCount = 0;
+    if (serialNo) filledCount++;
+    if (surname) filledCount++;
+    if (firstname) filledCount++;
 
-    if (!serialNo) {
-      alert("Please enter a serial number.");
+    // ✅ Allow serial-only, or any two, or all three
+    if (!(filledCount === 3 || filledCount === 2 || (filledCount === 1 && serialNo))) {
+      alert("Please enter either Program Code alone, or at least two of: Program Code, Surname, Firstname.");
       return;
     }
+
 
     try {
       const response = await fetch("https://script.google.com/macros/s/AKfycbzT-Iu2fUvfxwUMS2r4bUOmDFlwP6fpA8xGPFwgSOfbmB2ygMpEj0cWA3OBZNXB-_uo_A/exec", {
         method: "POST",
-        body: JSON.stringify({ action: "checkout", serial: serialNo }),
+        body: JSON.stringify({ action: "checkout", serial: serialNo , surname: surname, firstname:firstname, stato: localStorage.getItem("selectedState")}),
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
 
       const result = await response.json();
 
       if (result.status === "success") {
-            const displayDiv = formArea.querySelector('div');
-            displayDiv.innerHTML = `
-              <span style="font-weight:bold; color:#000000">Message:</span> 
-              <span style="color:#1a1a1a">${result.message}</span>
-            `;
-      } else if (result.status === "not_found") {
-        alert("Serial not found in sheet.");
-      } else {
+        const displayDiv = formArea.querySelector('div');
+
+        // If we have multiple results
+        if (Array.isArray(result.results) && result.results.length > 0) {
+          let html = `
+            <span style="font-weight:bold; color:#000000">Message:</span> 
+            <span style="color:#1a1a1a">${result.message}</span>
+            <br><br>
+            <span style="font-weight:bold; color:#000000">Matched Participants:</span>
+            <ul style="color:#1a1a1a; margin-top:5px; padding-left:18px;">
+          `;
+          result.results.forEach(p => {
+            html += `<li>
+              <strong>${p.surname} ${p.firstname} ${p.othername || ""}</strong> 
+              (Serial: ${p.serial})
+            </li>`;
+          });
+          html += "</ul>";
+
+          displayDiv.innerHTML = html;
+
+          sn.value = '';
+          su.value = '';
+          fn.value = '';
+        } else {
+          // Just a simple success message if no results array
+          displayDiv.innerHTML = `
+            <span style="font-weight:bold; color:#000000">Message:</span> 
+            <span style="color:#1a1a1a">${result.message}</span>
+          `;
+        }
+      } 
+      else if (result.status === "not_found") {
+        const displayDiv = formArea.querySelector('div');
+        displayDiv.innerHTML = `
+          <span style="font-weight:bold; color:#000000">Message:</span> 
+          <span style="color:red">No matching participant found or they have been prviously printed</span>
+        `;
+      } 
+      else if (result.status === "error") {
+        const displayDiv = formArea.querySelector('div');
+        displayDiv.innerHTML = `
+          <span style="font-weight:bold; color:#000000">Error:</span> 
+          <span style="color:red">${result.message}</span>
+        `;
+      } 
+      else {
         console.error("Unexpected response:", result);
       }
+
     } catch (error) {
       console.error("Error during checkout:", error);
-      alert("An error occurred while checking out.");
+      alert("An error occurred while checking out.",result.status, result.message );
     }
   });
 
 
 
     searcher.addEventListener('click', async () => {
-      const surname = document.getElementById('surname').value.trim();
-      const firstname = document.getElementById('firstname').value.trim();
+    const sn = document.getElementById('check_serial_input');
+    const su = document.getElementById('surname');
+    const fn = document.getElementById('firstname');
+    serialNo = sn.value.trim();
+    surname = su.value.trim();
+    firstname = fn.value.trim();
+    // Count how many fields are filled
+    // Count how many fields are filled
+    // Count how many fields are filled
+      let filledCount = 0;
+      if (serialNo) filledCount++;
+      if (surname) filledCount++;
+      if (firstname) filledCount++;
 
-      if (!surname || !firstname) {
-        alert("Please enter both surname and firstname");
+      // ✅ Allow serial-only, or any two, or all three
+      if (!(filledCount === 3 || filledCount === 2 || (filledCount === 1 && serialNo))) {
+        alert("Please enter either Program Code alone, or at least two of: Program Code, Surname, Firstname.");
         return;
       }
-
       try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbzT-Iu2fUvfxwUMS2r4bUOmDFlwP6fpA8xGPFwgSOfbmB2ygMpEj0cWA3OBZNXB-_uo_A/exec", {
           method: "POST",
           body: JSON.stringify({
             action: "manualSearch",
+            serial: serialNo,
             surname: surname,
-            firstname: firstname
+            firstname: firstname,
+            stato: localStorage.getItem("selectedState")
           }),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -735,21 +935,31 @@ function renderStackList() {
 
         const result = await response.json();
 
-        if (result.status === "success" && result.data) {
-          const { surname, firstname, serial, printed } = result.data;
+        if (result.status === "success" && result.data && result.data.length > 0) {
+          formArea.innerHTML = result.data.map(item => `
+            <div style="margin-bottom:8px;">
+              <span style="font-weight:bold; color:#000000">Name:</span> 
+                <span style="color:#1a1a1a">${item.surname} ${item.firstname}</span> | 
+              <span style="font-weight:bold; color:#000000">Program Code:</span> 
+                <span style="color:#1a1a1a">${item.serial}</span> | 
+              <span style="font-weight:bold; color:#000000">Print Status:</span> 
+                <span style="color:#1a1a1a">${item.printed}</span>
+            </div>
+          `).join("");
 
-        const displayDiv = formArea.querySelector('div');
-        displayDiv.innerHTML = `
-          <span style="font-weight:bold; color:#000000">Name:</span> 
-            <span style="color:#1a1a1a">${surname} ${firstname}</span> | 
-          <span style="font-weight:bold; color:#000000">Serial No:</span> 
-            <span style="color:#1a1a1a">${serial}</span> | 
-          <span style="font-weight:bold; color:#000000">Print Status:</span> 
-            <span style="color:#1a1a1a">${printed}</span>
-        `;
+          sn.value = '';
+          su.value = '';
+          fn.value = '';
+    
         } else {
-          alert("No match found.");
+          formArea.innerHTML = `
+            <div style="color: red; font-weight: bold;">
+              No match found.
+            </div>
+          `;
         }
+
+
       } catch (error) {
         console.error("Fetch error:", error);
         alert("Something went wrong. Please try again.");
@@ -758,6 +968,22 @@ function renderStackList() {
 
 
     renderSlots();
+
+    // ---- On page load: restore saved values ----
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedState = localStorage.getItem("selectedState") || "";
+      const savedRegistrar = localStorage.getItem("registrarName") || "";
+
+      // restore into inputs
+      if (savedState) regState.value = savedState;
+      if (savedRegistrar) regPer.value = savedRegistrar;
+
+      // update UI
+      updatePickedState(savedState);
+      updateRegistrar(savedRegistrar);
+
+      showFormIfReady()
+    });
 
   </script>
 </body>
