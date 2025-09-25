@@ -70,6 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Disable button and show loading state
     submitBtn.disabled = true;
     submitBtn.textContent = "Loading...";
+    submitBtn.style.opacity = "0.5";          // faded look
+    submitBtn.style.cursor = "not-allowed";   // blocked cursor
+
+
 
     const formData = new FormData(form);
 
@@ -123,8 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
           // Redirect after pressing OK
           window.location.href = "index.html";
         });
+      } else if (result.status === "duplicate") {
+        showError("Duplicate: " + result.message);
+        window.location.href = "index.html";
       } else {
-        showError("Form submitted, but something went wrong: " + result.message);
+        showError("Form not submitted successfully, something went wrong: " + result.message);
       }
 
     } catch (error) {
